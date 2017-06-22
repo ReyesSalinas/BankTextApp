@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generics;
+using System.Linq;
+
+public class Bank
+{
+	public int ID {get;set;}
+	public string Name {get;set;}
+	public List<Account> Accounts {get;set;}
+	public List<Commands> Commands {get;set;}
+}
+
+public class Account
+{
+	public int ID {get;set;}
+	public string Name {get;set;}
+}
+public class User
+{
+	public int ID {get;set;}
+	public string UserName {get;set;}
+	public List<Bank> Banks {get;set;}
+}
+
+public class BankServerice
+{	
+	public void GetBalance(Bank bank)
+	{
+		foreach(Account a in bank)
+		{
+			Smsmanager.Default.SendTextMessage(bank.Number,null,
+			bank.Messages.Balance,null,null);
+		}
+		
+	}
+	public void TransferMoney(Bank bank,Account fromAccount, Account toAccount)
+	{
+		Smsmanager.Default.SendTextMessage(bank.Number,null,
+			bank.Messages.Transfer(fromAccount,toAccount),null,null);
+	}
+	
+}
+
+public enum TextCommands
+{
+	None = 0,
+	Balance = 0,
+	TransferMoney,
+}
+public class CommandViewModel
+{
+	public CommandViewModel()
+	{
+
+	}			
+}
