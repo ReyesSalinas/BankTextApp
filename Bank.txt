@@ -47,10 +47,3 @@ public enum TextCommands
 	Balance = 0,
 	TransferMoney,
 }
-public class CommandViewModel
-{
-	public CommandViewModel()
-	{
-
-	}			
-}
